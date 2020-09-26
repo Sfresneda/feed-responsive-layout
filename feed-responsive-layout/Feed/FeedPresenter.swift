@@ -31,6 +31,7 @@ class FeedPresenter: FeedPresenterContract {
     
     // MARK: - Helpers
     private func bindModelsArray() {
+        self.models.removeAll()
         for index in 0...100 {
             self.models.append(FeedCellModel.init(name: "Cell \(String(index))"))
         }

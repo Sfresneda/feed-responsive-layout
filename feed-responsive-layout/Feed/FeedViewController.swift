@@ -55,9 +55,12 @@ class FeedViewController: UIViewController, FeedViewContract {
     @objc
     private func refreshControlDidStart(_ sender: UIRefreshControl) {
         sender.beginRefreshing()
-        
+        self.presenter?.initModels()
+    
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             sender.endRefreshing()
+            self.listCollectionView.reloadData()
+            self.gridCollectionView.reloadData()
         }
     }
     
