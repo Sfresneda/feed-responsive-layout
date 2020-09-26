@@ -31,10 +31,17 @@ class FeedViewController: UIViewController, FeedViewContract {
     // MARK: - Setup
     private func setupView() {
         self.addUIElements()
+        self.setupCollectionView()
     }
     
     private func setupCollectionView() {
+        self.listCollectionView.delegate = self
+        self.listCollectionView.dataSource = self
         
+        self.gridCollectionView.delegate = self
+        self.gridCollectionView.dataSource = self
+        
+        self.registerCells()
     }
     
     // MARK: - Contract
@@ -51,15 +58,15 @@ class FeedViewController: UIViewController, FeedViewContract {
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.delegate = self
         
-        let listLayout = UICollectionViewLayout.init()
+        let listLayout = FeedFlowLayout.init(layoutType: .list)
         let listCollectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: listLayout)
         self.listCollectionView = listCollectionView
-        self.listCollectionView.backgroundColor = UIColor.systemTeal
+        self.listCollectionView.backgroundColor = UIColor.clear
         
-        let gridLayout = UICollectionViewLayout.init()
+        let gridLayout = FeedFlowLayout.init(layoutType: .grid)
         let gridCollectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: gridLayout)
         self.gridCollectionView = gridCollectionView
-        self.gridCollectionView.backgroundColor = UIColor.systemFill
+        self.gridCollectionView.backgroundColor = UIColor.clear
         
         self.view.addSubview(scrollView)
         self.addCollectionToScroll(collections: [listCollectionView, gridCollectionView])
@@ -78,6 +85,14 @@ class FeedViewController: UIViewController, FeedViewContract {
         })
         
         self.updateViewConstraints()
+    }
+    
+    private func registerCells() {
+        self.listCollectionView.register(FeedListCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: FeedListCollectionViewCell.reuseIdentifier)
+        
+        self.gridCollectionView.register(FeedListCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: FeedListCollectionViewCell.reuseIdentifier)
     }
 }
 

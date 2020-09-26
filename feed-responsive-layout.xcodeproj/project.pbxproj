@@ -16,6 +16,9 @@
 		E858E9ED251F38BC00FECFAB /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9EC251F38BC00FECFAB /* FeedPresenter.swift */; };
 		E858E9F0251F38E200FECFAB /* FeedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9EF251F38E200FECFAB /* FeedContract.swift */; };
 		E858E9F3251F3DA800FECFAB /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9F2251F3DA800FECFAB /* FeedBuilder.swift */; };
+		E8C5094C251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift */; };
+		E8C50952251F5C060011AF75 /* FeedListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C50951251F5C060011AF75 /* FeedListCollectionViewCell.swift */; };
+		E8C50956251F5C400011AF75 /* FeedCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C50955251F5C400011AF75 /* FeedCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		E858E9EC251F38BC00FECFAB /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		E858E9EF251F38E200FECFAB /* FeedContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContract.swift; sourceTree = "<group>"; };
 		E858E9F2251F3DA800FECFAB /* FeedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBuilder.swift; sourceTree = "<group>"; };
+		E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		E8C50951251F5C060011AF75 /* FeedListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListCollectionViewCell.swift; sourceTree = "<group>"; };
+		E8C50955251F5C400011AF75 /* FeedCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +91,10 @@
 			children = (
 				E858E9F2251F3DA800FECFAB /* FeedBuilder.swift */,
 				E858E9EF251F38E200FECFAB /* FeedContract.swift */,
+				E8C5094E251F5BE90011AF75 /* Cells */,
 				E858E9E5251F386700FECFAB /* Layout */,
 				E858E9E1251F386500FECFAB /* FeedViewController.swift */,
+				E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift */,
 				E858E9EC251F38BC00FECFAB /* FeedPresenter.swift */,
 			);
 			path = Feed;
@@ -98,6 +106,31 @@
 				E858E9E8251F389700FECFAB /* FeedFlowLayout.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		E8C5094E251F5BE90011AF75 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E8C50955251F5C400011AF75 /* FeedCellModel.swift */,
+				E8C50950251F5BEF0011AF75 /* Grid */,
+				E8C5094F251F5BED0011AF75 /* List */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E8C5094F251F5BED0011AF75 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				E8C50951251F5C060011AF75 /* FeedListCollectionViewCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		E8C50950251F5BEF0011AF75 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Grid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +202,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8C5094C251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift in Sources */,
+				E8C50956251F5C400011AF75 /* FeedCellModel.swift in Sources */,
 				E858E9ED251F38BC00FECFAB /* FeedPresenter.swift in Sources */,
 				E858E9F0251F38E200FECFAB /* FeedContract.swift in Sources */,
 				E858E9CA251F382B00FECFAB /* AppDelegate.swift in Sources */,
 				E858E9E9251F389700FECFAB /* FeedFlowLayout.swift in Sources */,
 				E858E9E2251F386500FECFAB /* FeedViewController.swift in Sources */,
+				E8C50952251F5C060011AF75 /* FeedListCollectionViewCell.swift in Sources */,
 				E858E9F3251F3DA800FECFAB /* FeedBuilder.swift in Sources */,
 				E858E9CC251F382B00FECFAB /* SceneDelegate.swift in Sources */,
 			);
