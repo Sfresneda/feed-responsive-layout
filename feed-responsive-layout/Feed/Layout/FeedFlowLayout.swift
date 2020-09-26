@@ -22,7 +22,7 @@ enum FeedLayoutType {
 }
 
 class FeedFlowLayout: UICollectionViewFlowLayout {
-    private var layoutType: FeedLayoutType = .list
+    private(set) var layoutType: FeedLayoutType = .list
     
     init(layoutType: FeedLayoutType) {
         super.init()

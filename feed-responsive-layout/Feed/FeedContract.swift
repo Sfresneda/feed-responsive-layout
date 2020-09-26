@@ -14,5 +14,8 @@ protocol FeedViewContract: AnyObject {
 protocol FeedPresenterContract: AnyObject {
     var view: FeedViewContract? { get set }
     
+    func initModels()
+    func getModelsCount() -> Int
+    func getModelFor(row: Int) -> FeedCellModel?
 }
 

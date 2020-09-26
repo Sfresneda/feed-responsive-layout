@@ -12,7 +12,12 @@ class FeedViewController: UIViewController, FeedViewContract {
     // MARK: - UI
     private weak var scrollView: UIScrollView!
     private weak var listCollectionView: UICollectionView!
+    private weak var listRefreshControl: UIRefreshControl!
+    
     private weak var gridCollectionView: UICollectionView!
+    private weak var gridRefreshControl: UIRefreshControl!
+    
+    
     
     // MARK: - Vars
     var presenter: FeedPresenterContract?
@@ -21,6 +26,7 @@ class FeedViewController: UIViewController, FeedViewContract {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.presenter?.initModels()
     }
     
     override func updateViewConstraints() {
@@ -47,8 +53,17 @@ class FeedViewController: UIViewController, FeedViewContract {
     // MARK: - Contract
     
     // MARK: - Actions
+    @objc
+    private func refreshControlDidStart(_ sender: UIRefreshControl) {
+        sender.beginRefreshing()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            sender.endRefreshing()
+        }
+    }
     
     // MARK: - Helper
+    
     private func addUIElements() {
         let scrollView = UIScrollView.init()
         self.scrollView = scrollView
@@ -67,6 +82,18 @@ class FeedViewController: UIViewController, FeedViewContract {
         let gridCollectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: gridLayout)
         self.gridCollectionView = gridCollectionView
         self.gridCollectionView.backgroundColor = UIColor.clear
+        
+        let listRefreshControl = UIRefreshControl.init()
+        self.listRefreshControl = listRefreshControl
+        self.listRefreshControl.tintColor = UIColor.red
+        self.listRefreshControl.addTarget(self, action: #selector(refreshControlDidStart(_:)), for: .valueChanged)
+        self.listCollectionView.refreshControl = listRefreshControl
+        
+        let gridRefreshControl = UIRefreshControl.init()
+        self.gridRefreshControl = gridRefreshControl
+        self.gridRefreshControl.tintColor = UIColor.red
+        self.gridRefreshControl.addTarget(self, action: #selector(refreshControlDidStart(_:)), for: .valueChanged)
+        self.gridCollectionView.refreshControl = gridRefreshControl
         
         self.view.addSubview(scrollView)
         self.addCollectionToScroll(collections: [listCollectionView, gridCollectionView])
@@ -91,8 +118,8 @@ class FeedViewController: UIViewController, FeedViewContract {
         self.listCollectionView.register(FeedListCollectionViewCell.self,
                                          forCellWithReuseIdentifier: FeedListCollectionViewCell.reuseIdentifier)
         
-        self.gridCollectionView.register(FeedListCollectionViewCell.self,
-                                         forCellWithReuseIdentifier: FeedListCollectionViewCell.reuseIdentifier)
+        self.gridCollectionView.register(FeedGridCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: FeedGridCollectionViewCell.reuseIdentifier)
     }
 }
 
