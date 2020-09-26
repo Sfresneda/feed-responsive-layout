@@ -26,7 +26,6 @@ class FeedViewController: UIViewController, FeedViewContract {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.presenter?.initModels()
     }
     
     override func updateViewConstraints() {
@@ -120,6 +119,11 @@ class FeedViewController: UIViewController, FeedViewContract {
         
         self.gridCollectionView.register(FeedGridCollectionViewCell.self,
                                          forCellWithReuseIdentifier: FeedGridCollectionViewCell.reuseIdentifier)
+        
+        self.listCollectionView.register(MockupCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: MockupCollectionViewCell.reuseIdentifier)
+        self.gridCollectionView.register(MockupCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: MockupCollectionViewCell.reuseIdentifier)
     }
 }
 
