@@ -1,5 +1,5 @@
 //
-//  MockupCollectionViewCell.swift
+//  MockupListCollectionViewCell.swift
 //  feed-responsive-layout
 //
 //  Created by Sergio Fresneda on 9/26/20.
@@ -7,16 +7,16 @@
 
 import UIKit
 
-class MockupCollectionViewCell: UICollectionViewCell {
+class MockupListCollectionViewCell: MockBaseCollectionViewCell {
     
     // MARK: - UI
+    private lazy var viewsArray: [UIView] = []
     private weak var profileImageMock: UIView!
     private weak var authorMock: UIView!
     private weak var contentMock: UIView!
     private weak var footerMock: UIView!
     
     // MARK: - Vars
-    private lazy var isAnimated: Bool = false
     static var reuseIdentifier: String {
         return String(describing: self)
     }
@@ -46,7 +46,7 @@ class MockupCollectionViewCell: UICollectionViewCell {
     // MARK: - Setup
     private func setupCell() {
         self.backgroundColor = UIColor.clear
-        self.isAnimated = false
+        self.resetAnimation()
         self.subviews.forEach({ $0.removeFromSuperview() })
 
         self.addUIElements()
@@ -54,45 +54,37 @@ class MockupCollectionViewCell: UICollectionViewCell {
     
     private func bindCell() {
         self.profileImageMock.layer.cornerRadius = self.profileImageMock.bounds.width * 0.5
-        self.profileImageMock.clipsToBounds = true
-        
         self.authorMock.layer.cornerRadius = 20
-        self.authorMock.clipsToBounds = true
-        
         self.contentMock.layer.cornerRadius = 20
-        self.authorMock.clipsToBounds = true
-        
         self.footerMock.layer.cornerRadius = 20
-        self.footerMock.clipsToBounds = true
+
+        self.viewsArray.forEach({ view in
+            view.clipsToBounds = true
+            self.addGradient(on: view)
+        })
         
         self.animateCell()
     }
-    
-    // MARK: - Actions
-    
+        
     // MARK: - Helpers
     private func addUIElements() {
         let profileImageMock = UIView.init()
         self.profileImageMock = profileImageMock
-        self.profileImageMock.backgroundColor = UIColor.lightGray
         
         let authorMock = UIView.init()
         self.authorMock = authorMock
-        self.authorMock.backgroundColor = UIColor.lightGray
         
         let contentMock = UIView.init()
         self.contentMock = contentMock
-        self.contentMock.backgroundColor = UIColor.lightGray
         
         let footerMock = UIView.init()
         self.footerMock = footerMock
-        self.footerMock.backgroundColor = UIColor.lightGray
         
         self.addSubview(profileImageMock)
         self.addSubview(authorMock)
         self.addSubview(contentMock)
         self.addSubview(footerMock)
-        
+        self.viewsArray = [profileImageMock, authorMock, contentMock, footerMock]
         self.updateConstraints()
     }
     
@@ -122,21 +114,5 @@ class MockupCollectionViewCell: UICollectionViewCell {
         guide.trailingAnchor.constraint(equalTo: self.footerMock.trailingAnchor, constant: 10).isActive = true
         self.footerMock.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
         self.footerMock.heightAnchor.constraint(equalTo: self.profileImageMock.heightAnchor).isActive = true
-    }
-    
-    private func animateCell() {
-        guard !isAnimated else { return }
-        self.isAnimated = true
-        
-        let fadeAnimation = CAKeyframeAnimation(keyPath:"opacity")
-        fadeAnimation.duration = 2
-        fadeAnimation.keyTimes = [0, 0.2, 0.6, 1]
-        fadeAnimation.values = [0.0, 1.0, 1.0, 0.0]
-        fadeAnimation.isRemovedOnCompletion = false
-        fadeAnimation.repeatCount = .infinity
-        fadeAnimation.autoreverses = false
-        fadeAnimation.fillMode = CAMediaTimingFillMode.forwards
-        layer.add(fadeAnimation, forKey:"animateOpacity")
-        layer.opacity = 0.0
     }
 }

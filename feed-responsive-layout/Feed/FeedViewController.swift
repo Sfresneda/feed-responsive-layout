@@ -33,6 +33,11 @@ class FeedViewController: UIViewController, FeedViewContract {
         self.addConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.presenter?.loadMoreData(cleanPrevious: true)
+    }
+    
     // MARK: - Setup
     private func setupView() {
         self.addUIElements()
@@ -50,18 +55,34 @@ class FeedViewController: UIViewController, FeedViewContract {
     }
     
     // MARK: - Contract
+    func newDataIsLoaded() {
+        self.listRefreshControl.endRefreshing()
+        self.gridRefreshControl.endRefreshing()
+        
+        self.listCollectionView.reloadData()
+        self.gridCollectionView.reloadData()
+    }
+    
+    func addCellsToCollection(with index: [IndexPath]) {
+        DispatchQueue.main.async {
+            self.listCollectionView.performBatchUpdates ({
+                self.listCollectionView.insertItems(at: index)
+            }, completion: nil)
+            self.gridCollectionView.performBatchUpdates ({
+                self.gridCollectionView.insertItems(at: index)
+            }, completion: nil)
+        }
+    }
+    func stopRefreshControll() {
+        self.listRefreshControl.endRefreshing()
+        self.gridRefreshControl.endRefreshing()
+    }
     
     // MARK: - Actions
     @objc
     private func refreshControlDidStart(_ sender: UIRefreshControl) {
         sender.beginRefreshing()
-        self.presenter?.initModels()
-    
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            sender.endRefreshing()
-            self.listCollectionView.reloadData()
-            self.gridCollectionView.reloadData()
-        }
+        self.presenter?.loadMoreData(cleanPrevious: true)
     }
     
     // MARK: - Helper
@@ -123,10 +144,11 @@ class FeedViewController: UIViewController, FeedViewContract {
         self.gridCollectionView.register(FeedGridCollectionViewCell.self,
                                          forCellWithReuseIdentifier: FeedGridCollectionViewCell.reuseIdentifier)
         
-        self.listCollectionView.register(MockupCollectionViewCell.self,
-                                         forCellWithReuseIdentifier: MockupCollectionViewCell.reuseIdentifier)
-        self.gridCollectionView.register(MockupCollectionViewCell.self,
-                                         forCellWithReuseIdentifier: MockupCollectionViewCell.reuseIdentifier)
+        self.listCollectionView.register(MockupListCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: MockupListCollectionViewCell.reuseIdentifier)
+        self.gridCollectionView.register(MockupGridCollectionViewCell.self,
+                                         forCellWithReuseIdentifier: MockupGridCollectionViewCell.reuseIdentifier)
+        
     }
 }
 
