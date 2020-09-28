@@ -7,25 +7,30 @@
 
 import UIKit
 
+enum FeedSection {
+  case main
+}
+
 class FeedViewController: UIViewController, FeedViewContract {
     
     // MARK: - UI
     private weak var scrollView: UIScrollView!
-    private weak var listCollectionView: UICollectionView!
+    private(set) weak var listCollectionView: UICollectionView!
     private weak var listRefreshControl: UIRefreshControl!
     
-    private weak var gridCollectionView: UICollectionView!
+    private(set) weak var gridCollectionView: UICollectionView!
     private weak var gridRefreshControl: UIRefreshControl!
     
-    
-    
     // MARK: - Vars
+    private(set) lazy var gridDataSource: FeedDataSource = self.setupCollectionDatasource(type: .grid)
+    private(set) lazy var listDataSource: FeedDataSource = self.setupCollectionDatasource(type: .list)
     var presenter: FeedPresenterContract?
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.presenter?.loadMoreData(clear: true)
     }
     
     override func updateViewConstraints() {
@@ -35,7 +40,6 @@ class FeedViewController: UIViewController, FeedViewContract {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.presenter?.loadMoreData(cleanPrevious: true)
     }
     
     // MARK: - Setup
@@ -46,33 +50,22 @@ class FeedViewController: UIViewController, FeedViewContract {
     
     private func setupCollectionView() {
         self.listCollectionView.delegate = self
-        self.listCollectionView.dataSource = self
+        self.listCollectionView.dataSource = self.listDataSource
         
         self.gridCollectionView.delegate = self
-        self.gridCollectionView.dataSource = self
+        self.gridCollectionView.dataSource = self.gridDataSource
         
         self.registerCells()
     }
     
     // MARK: - Contract
-    func newDataIsLoaded() {
-        self.listRefreshControl.endRefreshing()
-        self.gridRefreshControl.endRefreshing()
+    func newDataIsLoaded(with snapshot: FeedSnapshot) {
+        self.stopRefreshControll()
         
-        self.listCollectionView.reloadData()
-        self.gridCollectionView.reloadData()
+        self.gridDataSource.apply(snapshot, animatingDifferences: true)
+        self.listDataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    func addCellsToCollection(with index: [IndexPath]) {
-        DispatchQueue.main.async {
-            self.listCollectionView.performBatchUpdates ({
-                self.listCollectionView.insertItems(at: index)
-            }, completion: nil)
-            self.gridCollectionView.performBatchUpdates ({
-                self.gridCollectionView.insertItems(at: index)
-            }, completion: nil)
-        }
-    }
     func stopRefreshControll() {
         self.listRefreshControl.endRefreshing()
         self.gridRefreshControl.endRefreshing()
@@ -82,7 +75,7 @@ class FeedViewController: UIViewController, FeedViewContract {
     @objc
     private func refreshControlDidStart(_ sender: UIRefreshControl) {
         sender.beginRefreshing()
-        self.presenter?.loadMoreData(cleanPrevious: true)
+        self.presenter?.loadMoreData(clear: true)
     }
     
     // MARK: - Helper
@@ -143,19 +136,12 @@ class FeedViewController: UIViewController, FeedViewContract {
         
         self.gridCollectionView.register(FeedGridCollectionViewCell.self,
                                          forCellWithReuseIdentifier: FeedGridCollectionViewCell.reuseIdentifier)
-        
-        self.listCollectionView.register(MockupListCollectionViewCell.self,
-                                         forCellWithReuseIdentifier: MockupListCollectionViewCell.reuseIdentifier)
-        self.gridCollectionView.register(MockupGridCollectionViewCell.self,
-                                         forCellWithReuseIdentifier: MockupGridCollectionViewCell.reuseIdentifier)
-        
     }
 }
 
 // MARK: - UIScrollViewDelegate
 extension FeedViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        debugPrint(scrollView.contentOffset.x)
     }
 }
 

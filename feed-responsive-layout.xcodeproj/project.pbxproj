@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E855900825208C1B007DAB3F /* CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855900725208C1B007DAB3F /* CAGradientLayer.swift */; };
-		E855900C25208E19007DAB3F /* MockupGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855900B25208E19007DAB3F /* MockupGridCollectionViewCell.swift */; };
-		E855900F25208E7A007DAB3F /* MockBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855900E25208E7A007DAB3F /* MockBaseCollectionViewCell.swift */; };
 		E858E9CA251F382B00FECFAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9C9251F382B00FECFAB /* AppDelegate.swift */; };
 		E858E9CC251F382B00FECFAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9CB251F382B00FECFAB /* SceneDelegate.swift */; };
 		E858E9D3251F382D00FECFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E858E9D2251F382D00FECFAB /* Assets.xcassets */; };
@@ -19,8 +17,7 @@
 		E858E9ED251F38BC00FECFAB /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9EC251F38BC00FECFAB /* FeedPresenter.swift */; };
 		E858E9F0251F38E200FECFAB /* FeedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9EF251F38E200FECFAB /* FeedContract.swift */; };
 		E858E9F3251F3DA800FECFAB /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E9F2251F3DA800FECFAB /* FeedBuilder.swift */; };
-		E892F23A251FA99300429ADA /* MockupListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892F239251FA99300429ADA /* MockupListCollectionViewCell.swift */; };
-		E8C5094C251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift */; };
+		E8C5094C251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate.swift */; };
 		E8C50952251F5C060011AF75 /* FeedListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C50951251F5C060011AF75 /* FeedListCollectionViewCell.swift */; };
 		E8C50956251F5C400011AF75 /* FeedCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C50955251F5C400011AF75 /* FeedCellModel.swift */; };
 		E8C5095A251F70DC0011AF75 /* FeedGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C50959251F70DC0011AF75 /* FeedGridCollectionViewCell.swift */; };
@@ -29,8 +26,6 @@
 
 /* Begin PBXFileReference section */
 		E855900725208C1B007DAB3F /* CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CAGradientLayer.swift; path = "feed-responsive-layout/CAGradientLayer.swift"; sourceTree = SOURCE_ROOT; };
-		E855900B25208E19007DAB3F /* MockupGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupGridCollectionViewCell.swift; sourceTree = "<group>"; };
-		E855900E25208E7A007DAB3F /* MockBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		E858E9C6251F382B00FECFAB /* feed-responsive-layout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "feed-responsive-layout.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E858E9C9251F382B00FECFAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E858E9CB251F382B00FECFAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,8 +37,7 @@
 		E858E9EC251F38BC00FECFAB /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		E858E9EF251F38E200FECFAB /* FeedContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContract.swift; sourceTree = "<group>"; };
 		E858E9F2251F3DA800FECFAB /* FeedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBuilder.swift; sourceTree = "<group>"; };
-		E892F239251FA99300429ADA /* MockupListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupListCollectionViewCell.swift; sourceTree = "<group>"; };
-		E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		E8C50951251F5C060011AF75 /* FeedListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListCollectionViewCell.swift; sourceTree = "<group>"; };
 		E8C50955251F5C400011AF75 /* FeedCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellModel.swift; sourceTree = "<group>"; };
 		E8C50959251F70DC0011AF75 /* FeedGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedGridCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -115,7 +109,7 @@
 				E8C5094E251F5BE90011AF75 /* Cells */,
 				E858E9E5251F386700FECFAB /* Layout */,
 				E858E9E1251F386500FECFAB /* FeedViewController.swift */,
-				E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift */,
+				E8C5094B251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate.swift */,
 				E858E9EC251F38BC00FECFAB /* FeedPresenter.swift */,
 			);
 			path = Feed;
@@ -129,22 +123,11 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		E892F238251FA98000429ADA /* Mockup */ = {
-			isa = PBXGroup;
-			children = (
-				E892F239251FA99300429ADA /* MockupListCollectionViewCell.swift */,
-				E855900B25208E19007DAB3F /* MockupGridCollectionViewCell.swift */,
-				E855900E25208E7A007DAB3F /* MockBaseCollectionViewCell.swift */,
-			);
-			path = Mockup;
-			sourceTree = "<group>";
-		};
 		E8C5094E251F5BE90011AF75 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				E8C5095C251F710A0011AF75 /* FeedCellWrapper.swift */,
 				E8C50955251F5C400011AF75 /* FeedCellModel.swift */,
-				E892F238251FA98000429ADA /* Mockup */,
 				E8C50950251F5BEF0011AF75 /* Grid */,
 				E8C5094F251F5BED0011AF75 /* List */,
 			);
@@ -236,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8C5094C251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate+UICollectionViewDataSource.swift in Sources */,
+				E8C5094C251F592A0011AF75 /* FeedViewController+UICollectionViewDelegate.swift in Sources */,
 				E855900825208C1B007DAB3F /* CAGradientLayer.swift in Sources */,
 				E8C5095D251F710A0011AF75 /* FeedCellWrapper.swift in Sources */,
 				E8C50956251F5C400011AF75 /* FeedCellModel.swift in Sources */,
@@ -244,13 +227,10 @@
 				E858E9F0251F38E200FECFAB /* FeedContract.swift in Sources */,
 				E858E9CA251F382B00FECFAB /* AppDelegate.swift in Sources */,
 				E858E9E9251F389700FECFAB /* FeedFlowLayout.swift in Sources */,
-				E855900C25208E19007DAB3F /* MockupGridCollectionViewCell.swift in Sources */,
 				E858E9E2251F386500FECFAB /* FeedViewController.swift in Sources */,
 				E8C50952251F5C060011AF75 /* FeedListCollectionViewCell.swift in Sources */,
-				E892F23A251FA99300429ADA /* MockupListCollectionViewCell.swift in Sources */,
 				E858E9F3251F3DA800FECFAB /* FeedBuilder.swift in Sources */,
 				E8C5095A251F70DC0011AF75 /* FeedGridCollectionViewCell.swift in Sources */,
-				E855900F25208E7A007DAB3F /* MockBaseCollectionViewCell.swift in Sources */,
 				E858E9CC251F382B00FECFAB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

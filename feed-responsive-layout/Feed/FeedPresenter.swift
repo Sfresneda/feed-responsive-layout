@@ -27,23 +27,19 @@ class FeedPresenter: FeedPresenterContract {
         return self.models[row]
     }
     
-    func loadMoreData(cleanPrevious: Bool) {
-        if cleanPrevious { self.models.removeAll() }
+    func loadMoreData(clear: Bool) {
+        if clear { self.models.removeAll() }
+        self.view?.stopRefreshControll()
         self.isLoading = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let newModels = self.addModels()
             newModels.forEach({ model in
                 self.models.append(model)
             })
-
+            
+            self.applySnapshot()
             self.isLoading = false
-            let rowIndex: [Int] = Array((self.models.count - newModels.count)..<self.models.count)
-            let indexPathArray: [IndexPath] = rowIndex.compactMap({ row -> IndexPath in
-                IndexPath.init(row: row, section: 0)
-            })
-            self.view?.stopRefreshControll()
-            self.view?.addCellsToCollection(with: indexPathArray)
         }
     }
     
@@ -56,9 +52,17 @@ class FeedPresenter: FeedPresenterContract {
     }
     
     // MARK: - Helpers
+    private func applySnapshot() {
+        var snapshot = FeedSnapshot.init()
+        snapshot.appendSections([FeedSection.main])
+        snapshot.appendItems(self.models, toSection: .main)
+        
+        self.view?.newDataIsLoaded(with: snapshot)
+    }
+    
     private func addModels() -> [FeedCellModel] {
         var newModels: [FeedCellModel] = []
-        for index in 0...9 {
+        for index in 0...20 {
             newModels.append(FeedCellModel.init(name: "Cell \(String(index))"))
         }
         return newModels

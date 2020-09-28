@@ -7,9 +7,18 @@
 
 import Foundation
 
-struct FeedCellModel {
+struct FeedCellModel: Hashable {
+    let identifier: UUID = UUID.init()
     let name: String
     let cellColor: CellColor = CellColor.init()
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.identifier)
+    }
+
+    static func == (lhs: FeedCellModel, rhs: FeedCellModel) -> Bool {
+        lhs.identifier == rhs.identifier
+    }
 }
 
 struct CellColor {

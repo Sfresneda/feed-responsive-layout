@@ -9,8 +9,7 @@ import Foundation
 protocol FeedViewContract: AnyObject {
     var presenter: FeedPresenterContract? { get set }
     
-    func newDataIsLoaded()
-    func addCellsToCollection(with rowIndex: [IndexPath])
+    func newDataIsLoaded(with snapshot: FeedSnapshot)
     func stopRefreshControll()
 }
 
@@ -19,7 +18,7 @@ protocol FeedPresenterContract: AnyObject {
     
     func getModelsCount() -> Int
     func getModelFor(row: Int) -> FeedCellModel?
-    func loadMoreData(cleanPrevious: Bool)
+    func loadMoreData(clear: Bool)
     func isCollectionLoading() -> Bool
     func shouldAppearLoadingMock() -> Bool
 }
