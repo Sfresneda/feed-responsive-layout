@@ -87,12 +87,14 @@ class FeedViewController: UIViewController, FeedViewContract {
         self.scrollView.isPagingEnabled = true
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.bounces = false
         self.scrollView.delegate = self
         
         let listLayout = FeedFlowLayout.init(layoutType: .list)
         let listCollectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: listLayout)
         self.listCollectionView = listCollectionView
         self.listCollectionView.backgroundColor = UIColor.clear
+        listLayout.delegate = self
         
         let gridLayout = FeedFlowLayout.init(layoutType: .grid)
         let gridCollectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: gridLayout)
@@ -101,7 +103,7 @@ class FeedViewController: UIViewController, FeedViewContract {
         
         let listRefreshControl = UIRefreshControl.init()
         self.listRefreshControl = listRefreshControl
-        self.listRefreshControl.tintColor = UIColor.red
+        self.listRefreshControl.tintColor = UIColor.darkGray
         self.listRefreshControl.addTarget(self, action: #selector(refreshControlDidStart(_:)), for: .valueChanged)
         self.listCollectionView.refreshControl = listRefreshControl
         

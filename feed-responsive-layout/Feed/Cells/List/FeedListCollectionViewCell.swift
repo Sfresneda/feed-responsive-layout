@@ -11,8 +11,10 @@ class FeedListCollectionViewCell: UICollectionViewCell {
         
     // MARK: - UI
     private weak var titleLabel: UILabel!
-    
+    private weak var adView: UIView?
+
     // MARK: - Vars
+    private lazy var containsAd: Bool = false
     private var model: FeedCellModel? {
         didSet {
             self.setNeedsLayout()

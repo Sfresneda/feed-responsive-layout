@@ -18,13 +18,28 @@ extension FeedViewController: UICollectionViewDelegate {
             cell.alpha = 1
         }
         
-        let lastIndexOffset = collectionView.numberOfItems(inSection: 0) - 3
+        let lastIndexOffset = collectionView.numberOfItems(inSection: 0) - 1
         guard !(self.presenter?.isCollectionLoading() ?? true),
               lastIndexOffset <= indexPath.row else {
             return
         }
 
         self.presenter?.loadMoreData(clear: false)
+    }
+}
+
+extension FeedViewController: FeedFlowLayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForItemAtIndexPath indexPath: IndexPath) -> CGFloat {
+        guard let model = self.presenter?.getModelFor(row: indexPath.row) else { fatalError() }
+        return CGFloat(model.cellHeight)
+    }
+    func collectionView(_ collectionView: UICollectionView, cellContainsAdAtIndexPath indexPath: IndexPath) -> Bool {
+        let row = indexPath.row + 1
+        return row % 5 == 0 && row != 0
+    }
+    func collectionView(_ collectionView: UICollectionView, heightForAdAtIndexPath indexPath: IndexPath) -> CGFloat {
+        let collectionWidth = collectionView.bounds.width
+        return 500 >= collectionWidth ? collectionWidth : 500
     }
 }
 

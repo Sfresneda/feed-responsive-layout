@@ -15,7 +15,6 @@ class FeedPresenter: FeedPresenterContract {
     weak var view: FeedViewContract?
     
     // MARK: - Contract
-    
     func getModelsCount() -> Int {
         return self.models.count
     }
@@ -29,10 +28,11 @@ class FeedPresenter: FeedPresenterContract {
     
     func loadMoreData(clear: Bool) {
         if clear { self.models.removeAll() }
+        guard 20 >= self.models.count else { return }
         self.view?.stopRefreshControll()
         self.isLoading = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             let newModels = self.addModels()
             newModels.forEach({ model in
                 self.models.append(model)
@@ -62,8 +62,8 @@ class FeedPresenter: FeedPresenterContract {
     
     private func addModels() -> [FeedCellModel] {
         var newModels: [FeedCellModel] = []
-        for index in 0...20 {
-            newModels.append(FeedCellModel.init(name: "Cell \(String(index))"))
+        for index in 0...4 {
+            newModels.append(FeedCellModel.init(name: "Cell" + String(self.models.count + index)))
         }
         return newModels
     }

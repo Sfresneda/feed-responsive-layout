@@ -11,6 +11,7 @@ struct FeedCellModel: Hashable {
     let identifier: UUID = UUID.init()
     let name: String
     let cellColor: CellColor = CellColor.init()
+    let cellHeight: Float = Float.random(in: ClosedRange<Float>.init(uncheckedBounds: (lower: 200, upper: 600)))
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.identifier)
